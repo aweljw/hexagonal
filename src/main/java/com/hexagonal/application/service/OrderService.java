@@ -3,32 +3,33 @@ package com.hexagonal.application.service;
 import com.hexagonal.adapter.out.response.OrderResponse;
 import com.hexagonal.application.port.in.OrderUseCase;
 import com.hexagonal.application.port.in.command.OrderCommand;
-import com.hexagonal.application.port.out.OrderCommandPort;
-import com.hexagonal.application.port.out.OrderQueryPort;
-import com.hexagonal.domain.command.CommandOrder;
-import com.hexagonal.domain.query.QueryOrder;
-import java.util.Optional;
+import com.hexagonal.application.port.out.OrderJpaPort;
+import com.hexagonal.application.port.out.OrderMongoPort;
+import com.hexagonal.domain.Order;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public class OrderService implements OrderUseCase {
 
-  private OrderCommandPort orderCommandPort;
-  private OrderQueryPort orderQueryPort;
+  private final OrderJpaPort orderJpaPort;
+  private final OrderMongoPort orderMongoPort;
 
   @Override
   public OrderResponse save(OrderCommand command) {
-    CommandOrder order = CommandOrder.createOrder().command(command).build();
-    CommandOrder result = orderCommandPort.save(order);
+    Order order = Order.createOrderBuilder()
+        .name(command.getName())
+        .mobile(command.getMobile())
+        .build();
 
     return OrderResponse.createOrderResponseBuilder()
-        .ord_no(result.getOrd_no())
+        .ord_no(orderJpaPort.save(order))
         .build();
   }
 
   @Override
   public OrderResponse find(long ordNo) {
-    QueryOrder order = orderQueryPort.findById(1L).get();
+    Order order = orderMongoPort.findOrder(ordNo);
+
     return OrderResponse.findOrderResponseBuilder()
         .ord_no(order.getId())
         .name(order.getName())

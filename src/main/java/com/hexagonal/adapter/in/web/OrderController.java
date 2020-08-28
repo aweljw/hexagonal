@@ -25,7 +25,7 @@ public class OrderController {
     request.setName("jin");
     request.setMobile("01011112222");
 
-    OrderCommand command = OrderCommand.createCommand()
+    OrderCommand command = OrderCommand.createOrderCommandBuilder()
         .name(request.getName())
         .mobile(request.getMobile())
         .build();

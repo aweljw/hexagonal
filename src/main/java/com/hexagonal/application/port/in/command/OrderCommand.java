@@ -9,7 +9,7 @@ public class OrderCommand {
   private final String name;
   private final String mobile;
 
-  @Builder(builderMethodName = "createCommand")
+  @Builder(builderClassName = "CreateOrderCommandBuilder", builderMethodName = "createOrderCommandBuilder")
   public OrderCommand (@NonNull String name, String mobile) {
     this.name = name;
     this.mobile = mobile;
