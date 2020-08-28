@@ -11,20 +11,21 @@ import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.util.Assert;
 
 @EqualsAndHashCode
 @Getter
 @Setter
 @Entity
 @Table(name = "jw_order")
-public class Order {
+public class CommandOrder {
 
-  private Order() {}
+  private CommandOrder() {}
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "ord_no")
-  private long ord_no;
+  private Long ord_no;
 
   @Column(name = "name")
   private String name;
@@ -33,7 +34,8 @@ public class Order {
   private String mobile;
 
   @Builder(builderMethodName = "createOrder")
-  public Order(OrderCommand command) {
+  public CommandOrder(OrderCommand command) {
+    Assert.notNull(name, "이름은 필수 정보 입니다.");
     this.name = command.getName();
     this.mobile = command.getMobile();
   }
