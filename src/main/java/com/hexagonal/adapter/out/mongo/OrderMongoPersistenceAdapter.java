@@ -1,12 +1,12 @@
 package com.hexagonal.adapter.out.mongo;
 
 import com.hexagonal.adapter.out.mongo.document.OrderDocument;
-import com.hexagonal.application.port.out.OrderMongoPort;
+import com.hexagonal.application.port.out.LoadOrderPort;
 import com.hexagonal.domain.Order;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class OrderMongoAdapter implements OrderMongoPort {
+public class OrderMongoPersistenceAdapter implements LoadOrderPort {
 
   private final OrderMongoRepository orderMongoRepository;
 

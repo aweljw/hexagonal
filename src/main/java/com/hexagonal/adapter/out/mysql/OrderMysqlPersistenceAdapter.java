@@ -1,14 +1,14 @@
 package com.hexagonal.adapter.out.mysql;
 
 import com.hexagonal.adapter.out.mysql.entity.OrderEntity;
-import com.hexagonal.application.port.out.OrderJpaPort;
+import com.hexagonal.application.port.out.CreateOrderPort;
 import com.hexagonal.domain.Order;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class OrderJpaAdapter implements OrderJpaPort {
+public class OrderMysqlPersistenceAdapter implements CreateOrderPort {
 
-  private final OrderJpaRepository orderJpaRepository;
+  private final OrderMysqlRepository orderMysqlRepository;
 
   @Override
   public long save(Order order) {
@@ -17,7 +17,7 @@ public class OrderJpaAdapter implements OrderJpaPort {
         .mobile(order.getMobile())
         .build();
 
-    OrderEntity result = orderJpaRepository.save(orderEntity);
+    OrderEntity result = orderMysqlRepository.save(orderEntity);
 
     return result.getOrd_no();
   }
