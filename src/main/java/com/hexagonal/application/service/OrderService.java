@@ -1,6 +1,6 @@
 package com.hexagonal.application.service;
 
-import com.hexagonal.adapter.out.response.OrderResponse;
+import com.hexagonal.application.model.response.OrderResponse;
 import com.hexagonal.application.port.in.OrderUseCase;
 import com.hexagonal.application.port.in.command.OrderCommand;
 import com.hexagonal.application.port.out.CreateOrderPort;

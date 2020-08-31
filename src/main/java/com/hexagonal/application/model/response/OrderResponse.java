@@ -1,4 +1,4 @@
-package com.hexagonal.adapter.out.response;
+package com.hexagonal.application.model.response;
 
 import lombok.Builder;
 

@@ -1,7 +1,7 @@
 package com.hexagonal.adapter.in.web;
 
 import com.hexagonal.adapter.in.web.request.CreateOrderRequest;
-import com.hexagonal.adapter.out.response.OrderResponse;
+import com.hexagonal.application.model.response.OrderResponse;
 import com.hexagonal.application.port.in.OrderUseCase;
 import com.hexagonal.application.port.in.command.OrderCommand;
 import lombok.RequiredArgsConstructor;
